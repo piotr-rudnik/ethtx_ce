@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - .docker_env
+      - .env
     depends_on:
       - mongo
   mongo:
