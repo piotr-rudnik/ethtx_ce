@@ -18,7 +18,12 @@
 <head>
     {% include './partials/headtags.html' %}
 
-    <title>EthDecoder</title>
+    <title>{{ page_title }}</title>
+
+    {% if favicon_link %}
+        <link rel="icon" type="image/x-icon" href="{{ favicon_link }}">
+    {%- endif -%}
+
     <style>
         html {
             height: 100vh;
@@ -138,6 +143,9 @@
 <div class="container">
     <div class="container-title">
         <span class="main-title">EthTx Transaction Decoder</span>
+        {% if logo %}
+            {{ logo | safe }}
+        {% endif %}
     </div>
     <form action="/" method="GET" onsubmit="return onSubmit(this)">
         <div>
@@ -159,9 +167,15 @@
             <input id="tx_submit" type="submit" value="Decode now">
         </div>
     </form>
+
+    {{ main_page_footer | safe }}
+
 </div>
 
 <script type="text/javascript">
+
+
+
     function onSubmit(e) {
         const tx = document.getElementById(`tx`).value;
         if (!tx || checkTxHash(tx) === false) {

@@ -166,6 +166,11 @@
 <head>
     {% include './partials/headtags.html' %}
     <title>Ethtx.info Analysis {{ transaction.tx_hash }}</title>
+
+    {% if favicon_link %}
+        <link rel="icon" type="image/x-icon" href="{{ favicon_link }}">
+    {%- endif -%}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -211,7 +216,11 @@
                     Gas used: <span style='color: darkred'>{{ "{:,}".format(transaction.gas_used) }}</span> / <span
                         style='color: darkred'>{{ "{:,.2f}".format(transaction.gas_price ) }}</span> Gwei
                 </div>
+
             </div>
+            {% if logo %}
+                {{ logo | safe }}
+            {% endif %}
         </div>
     </div>
 </div>

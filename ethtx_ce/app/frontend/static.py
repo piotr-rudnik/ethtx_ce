@@ -11,6 +11,7 @@
 #  limitations under the License.
 
 from flask import render_template, Blueprint, current_app
+from jinja2 import Template
 
 from . import frontend_route
 
@@ -20,11 +21,20 @@ bp = Blueprint("static", __name__)
 @frontend_route(bp, "/")
 def search_page() -> render_template:
     """Render search page - index."""
+
+    footer_template = Template(current_app.config['MAIN_PAGE_FOOTER_HTML'])
+    footer_html = footer_template.render(
+        ethtx_version=current_app.config["ethtx_version"],
+        ethtx_ce_version=current_app.config["ethtx_ce_version"],
+    )
+
     return (
         render_template(
             "index.html",
-            ethtx_version=current_app.config["ethtx_version"],
-            ethtx_ce_version=current_app.config["ethtx_ce_version"],
+            logo=current_app.config['LOGO_HTML'],
+            main_page_footer=footer_html,
+            page_title=current_app.config['PAGE_TITLE'],
+            favicon_link=current_app.config['FAVICON_LINK']
         ),
         200,
     )

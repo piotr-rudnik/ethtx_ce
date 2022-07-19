@@ -33,6 +33,10 @@ class Config:
 
     ETHTX_ADMIN_USERNAME = os.getenv("ETHTX_ADMIN_USERNAME")
     ETHTX_ADMIN_PASSWORD = os.getenv("ETHTX_ADMIN_PASSWORD")
+    LOGO_HTML = os.getenv("LOGO_HTML", "")
+    MAIN_PAGE_FOOTER_HTML = os.getenv("MAIN_PAGE_FOOTER_HTML", "")
+    PAGE_TITLE = os.getenv("MAIN_PAGE_TITLE", "EthDecoder")
+    FAVICON_LINK = os.getenv("FAVICON_LINK", "EthDecoder")
 
 
 class ProductionConfig(Config):

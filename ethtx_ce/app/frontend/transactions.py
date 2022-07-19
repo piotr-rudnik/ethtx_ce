@@ -62,6 +62,8 @@ def show_transaction_page(data: DecodedTransaction) -> render_template:
             call=data.calls,
             transfers=data.transfers,
             balances=data.balances,
+            favicon_link=current_app.config['FAVICON_LINK'],
+            logo=current_app.config['LOGO_HTML'],
         ),
         200,
     )
